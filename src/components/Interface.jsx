@@ -1,7 +1,7 @@
 import { ValidationError, useForm } from "@formspree/react";
 import { motion } from "framer-motion";
-import { useAtom } from "jotai";
-import { currentProjectAtom, projects } from "./Projects";
+import useProjectStore from "../stores/projectStore";
+import { projects } from "./Projects";
 
 const Section = (props) => {
   const { children, mobileTop } = props;
@@ -67,9 +67,9 @@ const AboutSection = (props) => {
           delay: 1.5,
         }}
       >
-        I make YouTube videos to help developers
+        I'm a full-stack developer passionate about
         <br />
-        learn how to build 3D apps
+        creating immersive 3D web experiences
       </motion.p>
       <motion.button
         onClick={() => setSection(3)}
@@ -118,16 +118,16 @@ const skills = [
 ];
 const languages = [
   {
-    title: "🇫🇷 French",
+    title: "🇺🇸 English",
     level: 100,
   },
   {
-    title: "🇺🇸 English",
-    level: 80,
+    title: "🇰🇷 Korean",
+    level: 90,
   },
   {
     title: "🇯🇵 Japanese",
-    level: 20,
+    level: 60,
   },
 ];
 
@@ -231,7 +231,7 @@ const SkillsSection = () => {
 };
 
 const ProjectsSection = () => {
-  const [currentProject, setCurrentProject] = useAtom(currentProjectAtom);
+  const { currentProject, setCurrentProject } = useProjectStore();
 
   const nextProject = () => {
     setCurrentProject((currentProject + 1) % projects.length);

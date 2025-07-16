@@ -1,5 +1,5 @@
 {
-  "name": "r3f-vite-starter",
+  "name": "hank-kim-portfolio",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -13,13 +13,12 @@
     "@react-three/drei": "9.75.0",
     "@react-three/fiber": "8.13.3",
     "framer-motion": "^10.12.16",
-    "framer-motion-3d": "^10.12.16",
     "gsap": "^3.12.0",
-    "jotai": "^2.1.1",
     "leva": "^0.9.34",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "three": "0.146.0"
+    "three": "0.146.0",
+    "zustand": "^5.0.6"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

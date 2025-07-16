@@ -1,23 +1,22 @@
 import { Image, Text } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import { animate, useMotionValue } from "framer-motion";
-
-import { motion } from "framer-motion-3d";
-import { atom, useAtom } from "jotai";
+import { useSpring, a } from "@react-spring/three";
+import useProjectStore from "../stores/projectStore";
 import { useEffect, useRef } from "react";
 
 export const projects = [
   {
-    title: "DirectoryTracer",
-    url: "https://directorytracer.xyz",
+    title: "Project One",
+    url: "https://example.com",
     image: "projects/directory.png",
-    description: "A directory listing vulnerability scanner",
+    description: "Full-stack web application with modern tech stack",
   },
   {
-    title: "Bedtime Storyteller",
-    url: "https://bedtimestoryteller.rest",
+    title: "Project Two",
+    url: "https://example.com",
     image: "projects/bedtime.png",
-    description: "Create bedtime stories with AI for your kids",
+    description: "3D interactive experience built with React Three Fiber",
   },
 ];
 
@@ -73,29 +72,29 @@ const Project = (props) => {
   );
 };
 
-export const currentProjectAtom = atom(Math.floor(projects.length / 2));
-
 export const Projects = () => {
   const { viewport } = useThree();
-  const [currentProject] = useAtom(currentProjectAtom);
+  const currentProject = useProjectStore((state) => state.currentProject);
 
   return (
     <group position-y={-viewport.height * 2 + 1}>
-      {projects.map((project, index) => (
-        <motion.group
-          key={"project_" + index}
-          position={[index * 2.5, 0, -3]}
-          animate={{
-            x: 0 + (index - currentProject) * 2.5,
-            y: currentProject === index ? 0 : -0.1,
-            z: currentProject === index ? -2 : -3,
-            rotateX: currentProject === index ? 0 : -Math.PI / 3,
-            rotateZ: currentProject === index ? 0 : -0.1 * Math.PI,
-          }}
-        >
-          <Project project={project} highlighted={index === currentProject} />
-        </motion.group>
-      ))}
+      {projects.map((project, index) => {
+        const projectSpring = useSpring({
+          position: [0 + (index - currentProject) * 2.5, currentProject === index ? 0 : -0.1, currentProject === index ? -2 : -3],
+          rotation: [currentProject === index ? 0 : -Math.PI / 3, 0, currentProject === index ? 0 : -0.1 * Math.PI],
+          config: { mass: 1, tension: 280, friction: 60 }
+        });
+
+        return (
+          <a.group
+            key={"project_" + index}
+            position={projectSpring.position}
+            rotation={projectSpring.rotation}
+          >
+            <Project project={project} highlighted={index === currentProject} />
+          </a.group>
+        );
+      })}
     </group>
   );
 };
