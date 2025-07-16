@@ -67,9 +67,11 @@ const AboutSection = (props) => {
           delay: 1.5,
         }}
       >
-        I'm a full-stack developer passionate about
+        I'm a frontend developer passionate about
         <br />
         creating immersive 3D web experiences
+        <br />
+        and mobile apps.
       </motion.p>
       <motion.button
         onClick={() => setSection(3)}
@@ -95,10 +97,10 @@ const AboutSection = (props) => {
 };
 
 const skills = [
-  { title: "Threejs / React Three Fiber", level: 70 },
   { title: "React", level: 90 },
   { title: "React Native", level: 80 },
   { title: "Nodejs", level: 80 },
+  { title: "Threejs / React Three Fiber", level: 70 },
   { title: "Python", level: 70 },
 ];
 

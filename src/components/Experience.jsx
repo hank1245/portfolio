@@ -49,21 +49,32 @@ export const Experience = (props) => {
 
   const characterGroup = useRef();
 
-  // Character group animation with react-spring
   const characterGroupSpring = useSpring({
-    position: section === 1 ? [isMobile ? 0.3 : 0, -viewport.height + 0.5, 7] :
-              section === 2 ? [isMobile ? -1.4 : -2, -viewport.height * 2 + 0.5, 0] :
-              section === 3 ? [0.24, -viewport.height * 3 + 1, 8.5] :
-              [0, 0, 0],
-    rotation: section === 1 ? [0, isMobile ? -Math.PI / 2 : 0, 0] :
-              section === 2 ? [0, Math.PI / 2, 0] :
-              section === 3 ? [0, -Math.PI / 4, 0] :
-              [-3.141592653589793, 1.2053981633974482, 3.141592653589793],
-    scale: section === 1 ? [isMobile ? 1.5 : 1, isMobile ? 1.5 : 1, isMobile ? 1.5 : 1] :
-           section === 2 ? [1, 1, 1] :
-           section === 3 ? [1, 1, 1] :
-           [officeScaleRatio, officeScaleRatio, officeScaleRatio],
-    config: { duration: 600 }
+    position:
+      section === 1
+        ? [isMobile ? 0.3 : 0, -viewport.height + 0.5, 7]
+        : section === 2
+        ? [isMobile ? -1.4 : -2, -viewport.height * 2 + 0.5, 0]
+        : section === 3
+        ? [0.24, -viewport.height * 3 + 1, 8.5]
+        : [0, 0, 0],
+    rotation:
+      section === 1
+        ? [0, isMobile ? -Math.PI / 2 : 0, 0]
+        : section === 2
+        ? [0, Math.PI / 2, 0]
+        : section === 3
+        ? [0, -Math.PI / 4, 0]
+        : [-3.141592653589793, 1.2053981633974482, 3.141592653589793],
+    scale:
+      section === 1
+        ? [isMobile ? 1.5 : 1, isMobile ? 1.5 : 1, isMobile ? 1.5 : 1]
+        : section === 2
+        ? [1, 1, 1]
+        : section === 3
+        ? [1, 1, 1]
+        : [officeScaleRatio, officeScaleRatio, officeScaleRatio],
+    config: { duration: 600 },
   });
 
   // Office group animation with react-spring
@@ -73,17 +84,21 @@ export const Experience = (props) => {
       isMobile ? -viewport.height / 6 : 0,
       3,
     ],
-    config: { duration: 800 }
+    config: { duration: 800 },
   });
 
   // Skills group animation with react-spring
   const skillsGroupSpring = useSpring({
     position: [
       0,
-      section === 1 ? -viewport.height : isMobile ? -viewport.height : -1.5 * officeScaleRatio,
+      section === 1
+        ? -viewport.height
+        : isMobile
+        ? -viewport.height
+        : -1.5 * officeScaleRatio,
       section === 1 ? 0 : -10,
     ],
-    config: { duration: 600 }
+    config: { duration: 600 },
   });
 
   useFrame((state) => {
@@ -106,14 +121,6 @@ export const Experience = (props) => {
         characterGroup.current.position
       );
     }
-    // console.log([position.x, position.y, position.z]);
-
-    // const quaternion = new THREE.Quaternion();
-    // characterContainerAboutRef.current.getWorldQuaternion(quaternion);
-    // const euler = new THREE.Euler();
-    // euler.setFromQuaternion(quaternion, "XYZ");
-
-    // console.log([euler.x, euler.y, euler.z]);
   });
 
   return (

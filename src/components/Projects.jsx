@@ -53,7 +53,7 @@ const Project = (props) => {
         maxWidth={2}
         anchorX={"left"}
         anchorY={"top"}
-        fontSize={0.2}
+        fontSize={0.15}
         position={[-1, -0.4, 0]}
       >
         {project.title.toUpperCase()}
