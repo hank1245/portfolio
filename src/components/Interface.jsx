@@ -95,42 +95,18 @@ const AboutSection = (props) => {
 };
 
 const skills = [
-  {
-    title: "Threejs / React Three Fiber",
-    level: 80,
-  },
-  {
-    title: "React / React Native",
-    level: 90,
-  },
-  {
-    title: "Nodejs",
-    level: 90,
-  },
-  {
-    title: "Typescript",
-    level: 60,
-  },
-  {
-    title: "3D Modeling",
-    level: 40,
-  },
-];
-const languages = [
-  {
-    title: "🇺🇸 English",
-    level: 100,
-  },
-  {
-    title: "🇰🇷 Korean",
-    level: 90,
-  },
-  {
-    title: "🇯🇵 Japanese",
-    level: 60,
-  },
+  { title: "Threejs / React Three Fiber", level: 70 },
+  { title: "React", level: 90 },
+  { title: "React Native", level: 80 },
+  { title: "Nodejs", level: 80 },
+  { title: "Python", level: 70 },
 ];
 
+const languages = [
+  { title: "🇰🇷 Korean", level: 100 },
+  { title: "🇬🇧 English", level: 80 },
+  { title: "🇯🇵 Japanese", level: 60 },
+];
 const SkillsSection = () => {
   return (
     <Section>

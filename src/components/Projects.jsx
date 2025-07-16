@@ -7,22 +7,21 @@ import { useEffect, useRef } from "react";
 
 export const projects = [
   {
-    title: "Project One",
-    url: "https://example.com",
+    title: "DirectoryTracer",
+    url: "https://directorytracer.xyz",
     image: "projects/directory.png",
-    description: "Full-stack web application with modern tech stack",
+    description: "A directory listing vulnerability scanner",
   },
   {
-    title: "Project Two",
-    url: "https://example.com",
+    title: "Bedtime Storyteller",
+    url: "https://bedtimestoryteller.rest",
     image: "projects/bedtime.png",
-    description: "3D interactive experience built with React Three Fiber",
+    description: "Create bedtime stories with AI for your kids",
   },
 ];
 
 const Project = (props) => {
   const { project, highlighted } = props;
-
   const background = useRef();
   const bgOpacity = useMotionValue(0.4);
 
@@ -80,9 +79,17 @@ export const Projects = () => {
     <group position-y={-viewport.height * 2 + 1}>
       {projects.map((project, index) => {
         const projectSpring = useSpring({
-          position: [0 + (index - currentProject) * 2.5, currentProject === index ? 0 : -0.1, currentProject === index ? -2 : -3],
-          rotation: [currentProject === index ? 0 : -Math.PI / 3, 0, currentProject === index ? 0 : -0.1 * Math.PI],
-          config: { mass: 1, tension: 280, friction: 60 }
+          position: [
+            0 + (index - currentProject) * 2.5,
+            currentProject === index ? 0 : -0.1,
+            currentProject === index ? -2 : -3,
+          ],
+          rotation: [
+            currentProject === index ? 0 : -Math.PI / 3,
+            0,
+            currentProject === index ? 0 : -0.1 * Math.PI,
+          ],
+          config: { mass: 1, tension: 280, friction: 60 },
         });
 
         return (
