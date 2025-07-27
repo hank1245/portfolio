@@ -18,6 +18,19 @@ export const projects = [
     image: "projects/bedtime.png",
     description: "Create bedtime stories with AI for your kids",
   },
+  {
+    title: "Algorithm Playground",
+    url: "https://algorithmplayground-dblxuzof2-hank1245s-projects.vercel.app/",
+    image: "projects/algorithm.png",
+    description: "Algorithm 3D visualization with Three.js",
+  },
+  {
+    title: "Vocasimple",
+    url: "",
+    image: "projects/vocasimple.png",
+    description:
+      "Learn English vocabulary through quizzes and interactive features",
+  },
 ];
 
 const Project = (props) => {
