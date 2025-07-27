@@ -8,7 +8,7 @@ import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
 
 export function Avatar(props) {
-  const { animation, wireframe } = props;
+  const { animation } = props;
   const { headFollow, cursorFollow } = useControls({
     headFollow: false,
     cursorFollow: false,
@@ -49,12 +49,6 @@ export function Avatar(props) {
       actions[animation].reset().fadeOut(0.5);
     };
   }, [animation]);
-
-  useEffect(() => {
-    Object.values(materials).forEach((material) => {
-      material.wireframe = wireframe;
-    });
-  }, [wireframe]);
 
   return (
     <group {...props} ref={group} dispose={null}>

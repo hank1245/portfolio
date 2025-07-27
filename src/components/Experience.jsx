@@ -132,7 +132,7 @@ export const Experience = (props) => {
         rotation={characterGroupSpring.rotation}
         scale={characterGroupSpring.scale}
       >
-        <Avatar animation={characterAnimation} wireframe={section === 1} />
+        <Avatar animation={characterAnimation} />
       </a.group>
       <ambientLight intensity={1} />
       <a.group
