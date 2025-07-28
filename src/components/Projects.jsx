@@ -26,10 +26,16 @@ export const projects = [
   },
   {
     title: "Vocasimple",
-    url: "",
+    url: "https://endearing-pie-91e6b8.netlify.app/",
     image: "projects/vocasimple.png",
     description:
       "Learn English vocabulary through quizzes and interactive features",
+  },
+  {
+    title: "Dev Blog",
+    url: "https://hank1245.github.io",
+    image: "projects/blog.png",
+    description: "My personal blog to share tech articles.",
   },
 ];
 
