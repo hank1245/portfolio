@@ -60,7 +60,7 @@ const ForceGraph = () => {
       {
         id: "notionpage",
         name: "Hank's Page",
-        url: "https://www.notion.so/Hank-s-Page-98a206d2119646bfa16527691aafc349",
+        url: "https://kimhank.oopy.io/",
         type: "center",
         group: 0,
       },

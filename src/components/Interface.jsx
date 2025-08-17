@@ -74,12 +74,7 @@ const AboutSection = (props) => {
         and mobile apps.
       </motion.p>
       <motion.button
-        onClick={() =>
-          window.open(
-            "https://www.notion.so/Hank-s-Page-98a206d2119646bfa16527691aafc349",
-            "_blank"
-          )
-        }
+        onClick={() => window.open("https://kimhank.oopy.io/", "_blank")}
         className={`bg-indigo-600 text-white py-4 px-8 
       rounded-lg font-bold text-lg mt-4 md:mt-16`}
         initial={{
