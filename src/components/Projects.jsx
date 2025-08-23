@@ -65,7 +65,6 @@ const Project = React.memo((props) => {
       <Image
         scale={[2, 1.2, 1]}
         url={project.image}
-        // Drei Image doesn't have alt; title provides assistive info
         title={`${project.title} preview image`}
         toneMapped={false}
         position-y={0.3}
@@ -96,7 +95,6 @@ export const Projects = () => {
   const { viewport } = useThree();
   const currentProject = useProjectStore((state) => state.currentProject);
 
-  // Memoize map of projects to avoid re-creating arrays on each render
   const projectItems = useMemo(() => projects, []);
 
   return (

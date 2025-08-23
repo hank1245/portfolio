@@ -9,12 +9,10 @@ export default class ErrorBoundary extends Component {
     return { hasError: true };
   }
   componentDidCatch(error, info) {
-    // Optionally report to analytics/logging
-    console.error("ErrorBoundary caught an error", error, info);
+    return;
   }
   handleRetry = () => {
     this.setState({ hasError: false });
-    // allow parent to retry reload lazily loaded chunks
     this.props.onRetry?.();
   };
   render() {

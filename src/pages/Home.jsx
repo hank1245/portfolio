@@ -12,7 +12,6 @@ import useIntentPrefetch from "../hooks/useIntentPrefetch";
 import { framerMotionConfig } from "../config";
 import ErrorBoundary from "../components/ErrorBoundary";
 
-// Route-level code-splitting: lazy-load the heavy 3D Experience
 const Experience = lazy(() =>
   import("../components/Experience").then((m) => ({ default: m.Experience }))
 );
@@ -22,11 +21,9 @@ export default function Home() {
   const [started, setStarted] = useState(false);
   const [menuOpened, setMenuOpened] = useState(false);
   const handleRetry = useCallback(() => {
-    // retry lazy chunk load by touching the import again
     import("../components/Experience");
   }, []);
 
-  // Prefetch the Experience bundle on early intent signals
   const { prefetchOnHover, prefetchOnOpen } = useIntentPrefetch(() =>
     import("../components/Experience")
   );
@@ -42,7 +39,6 @@ export default function Home() {
         <Canvas
           shadows
           camera={{ position: [0, 3, 10], fov: 42 }}
-          // Hovering canvas implies user intent to interact with 3D scene
           onMouseEnter={prefetchOnHover}
         >
           <color attach="background" args={["#e6e7ff"]} />
@@ -55,7 +51,6 @@ export default function Home() {
                     <Experience
                       section={section}
                       menuOpened={menuOpened}
-                      // Opening menu often follows; prefetch on first open signal
                       onLoad={prefetchOnOpen}
                     />
                   )}

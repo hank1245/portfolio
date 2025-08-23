@@ -34,10 +34,9 @@ export function Office(props) {
   const textureOpacity = useMotionValue(0);
   const glassTextureOpacity = useMotionValue(0);
 
-  // React-spring animations for all animated elements
   const elementSpring = useSpring({
     scale: section === 0 ? [1, 1, 1] : [0, 0, 0],
-    config: { mass: 1, tension: 280, friction: 60 }
+    config: { mass: 1, tension: 280, friction: 60 },
   });
 
   useEffect(() => {

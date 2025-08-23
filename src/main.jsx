@@ -4,7 +4,6 @@ import App from "./App";
 import "./index.css";
 import { warmup3DAssets } from "./lib/preload/assetsPreload.js";
 
-// Warm up heavy assets after initial paint/idleness without blocking entry chunk
 const idle = (cb) => {
   if ("requestIdleCallback" in window) {
     window.requestIdleCallback(cb, { timeout: 1500 });

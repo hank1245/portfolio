@@ -76,5 +76,4 @@ const MenuButton = memo((props) => {
   );
 });
 
-// Lazy import ForceGraph component (which itself dynamically loads d3)
 const LazyForceGraph = lazy(() => import("./ForceGraph"));

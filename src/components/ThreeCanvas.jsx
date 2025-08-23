@@ -3,7 +3,6 @@ import { Canvas } from "@react-three/fiber";
 import { Suspense, lazy } from "react";
 import { ScrollManager } from "./ScrollManager";
 
-// Split heavy sub-sections too so they only load when needed
 const Experience = lazy(() =>
   import("./Experience").then((m) => ({ default: m.Experience }))
 );

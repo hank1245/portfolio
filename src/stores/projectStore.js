@@ -1,8 +1,7 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 
-// projects array length is 2, so Math.floor(2 / 2) = 1
 const useProjectStore = create((set) => ({
-  currentProject: 1, // Default to middle project like the original atom
+  currentProject: 1,
   setCurrentProject: (project) => set({ currentProject: project }),
 }));
 
