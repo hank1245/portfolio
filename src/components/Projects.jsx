@@ -3,7 +3,7 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { animate, useMotionValue } from "framer-motion";
 import { useSpring, a } from "@react-spring/three";
 import useProjectStore from "../stores/projectStore";
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useMemo, useCallback } from "react";
 
 export const projects = [
   {
@@ -39,7 +39,7 @@ export const projects = [
   },
 ];
 
-const Project = (props) => {
+const Project = React.memo((props) => {
   const { project, highlighted } = props;
   const background = useRef();
   const bgOpacity = useMotionValue(0.4);
@@ -65,6 +65,8 @@ const Project = (props) => {
       <Image
         scale={[2, 1.2, 1]}
         url={project.image}
+        // Drei Image doesn't have alt; title provides assistive info
+        title={`${project.title} preview image`}
         toneMapped={false}
         position-y={0.3}
       />
@@ -88,15 +90,18 @@ const Project = (props) => {
       </Text>
     </group>
   );
-};
+});
 
 export const Projects = () => {
   const { viewport } = useThree();
   const currentProject = useProjectStore((state) => state.currentProject);
 
+  // Memoize map of projects to avoid re-creating arrays on each render
+  const projectItems = useMemo(() => projects, []);
+
   return (
     <group position-y={-viewport.height * 2 + 1}>
-      {projects.map((project, index) => {
+      {projectItems.map((project, index) => {
         const projectSpring = useSpring({
           position: [
             0 + (index - currentProject) * 2.5,

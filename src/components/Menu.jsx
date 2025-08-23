@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useCallback, memo } from "react";
 import useIntentPrefetch from "../hooks/useIntentPrefetch";
 
 export const Menu = (props) => {
@@ -6,15 +6,18 @@ export const Menu = (props) => {
   const { prefetchOnHover, prefetchOnOpen } = useIntentPrefetch(() =>
     import("./ForceGraph")
   );
+  const handleToggle = useCallback(() => {
+    prefetchOnOpen();
+    setMenuOpened(!menuOpened);
+  }, [prefetchOnOpen, setMenuOpened, menuOpened]);
 
   return (
     <>
       <button
-        onClick={() => {
-          prefetchOnOpen();
-          setMenuOpened(!menuOpened);
-        }}
+        onClick={handleToggle}
         className="z-20 fixed top-4 right-4 md:top-12 md:right-12 p-3 bg-indigo-600 w-11 h-11 rounded-md"
+        aria-label={menuOpened ? "Close menu" : "Open menu"}
+        title={menuOpened ? "Close menu" : "Open menu"}
         onMouseEnter={prefetchOnHover}
       >
         <div
@@ -60,17 +63,18 @@ export const Menu = (props) => {
     </>
   );
 };
-const MenuButton = (props) => {
+const MenuButton = memo((props) => {
   const { label, onClick } = props;
   return (
     <button
       onClick={onClick}
       className="text-3xl font-bold cursor-pointer hover:text-indigo-600 transition-colors"
+      aria-label={`Go to ${label} section`}
     >
       {label}
     </button>
   );
-};
+});
 
 // Lazy import ForceGraph component (which itself dynamically loads d3)
 const LazyForceGraph = lazy(() => import("./ForceGraph"));
