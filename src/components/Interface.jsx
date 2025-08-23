@@ -53,7 +53,7 @@ const AboutSection = (props) => {
         <span className="bg-white px-1 italic">Hank Kim</span>
       </h1>
       <motion.p
-        className="text-lg text-gray-600 mt-4"
+        className="text-xl text-black mt-4"
         initial={{
           opacity: 0,
           y: 25,
@@ -67,11 +67,11 @@ const AboutSection = (props) => {
           delay: 1.5,
         }}
       >
-        I'm a frontend developer passionate about
+        I'm a Frontend developer passionate about
         <br />
-        creating immersive 3D web experiences
+        React, React Native and
         <br />
-        and mobile apps.
+        creating 3D web experiences!
       </motion.p>
       <motion.button
         onClick={() => window.open("https://kimhank.oopy.io/", "_blank")}
