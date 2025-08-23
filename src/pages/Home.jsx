@@ -14,9 +14,7 @@ import ErrorBoundary from "../components/ErrorBoundary";
 
 // Route-level code-splitting: lazy-load the heavy 3D Experience
 const Experience = lazy(() =>
-  import("../features/experience/Experience").then((m) => ({
-    default: m.Experience,
-  }))
+  import("../components/Experience").then((m) => ({ default: m.Experience }))
 );
 
 export default function Home() {
@@ -25,12 +23,12 @@ export default function Home() {
   const [menuOpened, setMenuOpened] = useState(false);
   const handleRetry = useCallback(() => {
     // retry lazy chunk load by touching the import again
-    import("../features/experience/Experience");
+    import("../components/Experience");
   }, []);
 
   // Prefetch the Experience bundle on early intent signals
   const { prefetchOnHover, prefetchOnOpen } = useIntentPrefetch(() =>
-    import("../features/experience/Experience")
+    import("../components/Experience")
   );
 
   useEffect(() => {
@@ -52,7 +50,7 @@ export default function Home() {
             <ScrollControls pages={4} damping={0.1}>
               <ScrollManager section={section} onSectionChange={setSection} />
               <Scroll>
-                <Suspense>
+                <Suspense fallback={null}>
                   {started && (
                     <Experience
                       section={section}

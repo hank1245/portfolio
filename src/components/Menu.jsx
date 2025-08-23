@@ -49,7 +49,7 @@ export const Menu = (props) => {
           </div>
 
           <div className="flex-1 min-h-[500px]">
-            <Suspense>
+            <Suspense fallback={null}>
               <LazyForceGraph />
             </Suspense>
             <div className="mt-3">

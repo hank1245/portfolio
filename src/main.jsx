@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
-import { warmup3DAssets } from "./preload/assetsPreload.js";
+import { warmup3DAssets } from "./lib/preload/assetsPreload.js";
 
 // Warm up heavy assets after initial paint/idleness without blocking entry chunk
 const idle = (cb) => {
