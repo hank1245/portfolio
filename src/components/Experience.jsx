@@ -77,7 +77,6 @@ export const Experience = (props) => {
     config: { duration: 600 },
   });
 
-  // Office group animation with react-spring
   const officeGroupSpring = useSpring({
     position: [
       isMobile ? 0 : 1.5 * officeScaleRatio,
@@ -87,7 +86,6 @@ export const Experience = (props) => {
     config: { duration: 800 },
   });
 
-  // Skills group animation with react-spring
   const skillsGroupSpring = useSpring({
     position: [
       0,
@@ -115,7 +113,6 @@ export const Experience = (props) => {
     state.camera.position.x = cameraPositionX.get();
     state.camera.lookAt(cameraLookAtX.get(), 0, 0);
 
-    // const position = new THREE.Vector3();
     if (section === 0) {
       characterContainerAboutRef.current.getWorldPosition(
         characterGroup.current.position

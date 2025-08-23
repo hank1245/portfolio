@@ -1,7 +1,5 @@
 import { useCallback, useEffect, useRef } from "react";
 
-// input: prefetchFn: () => void (starts dynamic imports)
-// output: { prefetchOnHover, prefetchOnOpen }
 export default function useIntentPrefetch(prefetchFn) {
   const prefetchedRef = useRef(false);
 

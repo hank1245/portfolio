@@ -7,10 +7,24 @@ export default function ForceGraph() {
     let cleanup = () => {};
     let mounted = true;
     (async () => {
-      const d3 = await import("d3");
+      const [
+        selection,
+        {
+          forceSimulation,
+          forceLink,
+          forceManyBody,
+          forceCenter,
+          forceCollide,
+        },
+        drag,
+      ] = await Promise.all([
+        import("d3-selection"),
+        import("d3-force"),
+        import("d3-drag"),
+      ]);
       if (!mounted || !svgRef.current) return;
 
-      const svg = d3.select(svgRef.current);
+      const svg = selection.select(svgRef.current);
       svg.selectAll("*").remove();
 
       const width = 500;
@@ -195,20 +209,18 @@ export default function ForceGraph() {
         ],
       };
 
-      const simulation = d3
-        .forceSimulation(forceGraphData.nodes)
+      const simulation = forceSimulation(forceGraphData.nodes)
         .force(
           "link",
-          d3
-            .forceLink(forceGraphData.links)
+          forceLink(forceGraphData.links)
             .id((d) => d.id)
             .distance(80)
         )
-        .force("charge", d3.forceManyBody().strength(-300))
-        .force("center", d3.forceCenter(width / 2, height / 2))
-        .force("collision", d3.forceCollide().radius(25));
+        .force("charge", forceManyBody().strength(-300))
+        .force("center", forceCenter(width / 2, height / 2))
+        .force("collision", forceCollide().radius(25));
 
-      const tooltip = d3
+      const tooltip = selection
         .select("body")
         .append("div")
         .style("position", "absolute")
@@ -306,7 +318,7 @@ export default function ForceGraph() {
           window.open(d.url, "_blank");
         })
         .call(
-          d3
+          drag
             .drag()
             .on("start", dragstarted)
             .on("drag", dragged)
@@ -370,7 +382,10 @@ export default function ForceGraph() {
   }, []);
 
   return (
-    <div className="w-full bg-gradient-to-br from-white via-gray-50 to-indigo-50 rounded-xl shadow-lg border border-gray-200/50 overflow-hidden relative">
+    <div
+      className="w-full bg-gradient-to-br from-white via-gray-50 to-indigo-50 rounded-xl shadow-lg border border-gray-200/50 overflow-hidden relative"
+      aria-label="Interactive network graph of links"
+    >
       <svg ref={svgRef} className="w-full"></svg>
     </div>
   );

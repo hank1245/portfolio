@@ -1,10 +1,22 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import './index.css'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "./index.css";
+import { warmup3DAssets } from "./lib/preload/assetsPreload.js";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+const idle = (cb) => {
+  if ("requestIdleCallback" in window) {
+    window.requestIdleCallback(cb, { timeout: 1500 });
+  } else {
+    setTimeout(cb, 300);
+  }
+};
+idle(() => {
+  warmup3DAssets();
+});
+
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);

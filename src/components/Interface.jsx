@@ -53,7 +53,7 @@ const AboutSection = (props) => {
         <span className="bg-white px-1 italic">Hank Kim</span>
       </h1>
       <motion.p
-        className="text-lg text-gray-600 mt-4"
+        className="text-xl text-black mt-4"
         initial={{
           opacity: 0,
           y: 25,
@@ -67,16 +67,17 @@ const AboutSection = (props) => {
           delay: 1.5,
         }}
       >
-        I'm a frontend developer passionate about
+        I'm a Frontend developer passionate about
         <br />
-        creating immersive 3D web experiences
+        React, React Native and
         <br />
-        and mobile apps.
+        creating 3D web experiences!
       </motion.p>
       <motion.button
         onClick={() => window.open("https://kimhank.oopy.io/", "_blank")}
         className={`bg-indigo-600 text-white py-4 px-8 
       rounded-lg font-bold text-lg mt-4 md:mt-16`}
+        aria-label="Open Hank's Notion page in a new tab"
         initial={{
           opacity: 0,
           y: 25,
@@ -250,7 +251,10 @@ const ContactSection = () => {
           <p className="text-gray-900 text-center">Thanks for your message !</p>
         ) : (
           <form onSubmit={handleSubmit}>
-            <label for="name" className="font-medium text-gray-900 block mb-1">
+            <label
+              htmlFor="name"
+              className="font-medium text-gray-900 block mb-1"
+            >
               Name
             </label>
             <input
@@ -260,7 +264,7 @@ const ContactSection = () => {
               className="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 p-3"
             />
             <label
-              for="email"
+              htmlFor="email"
               className="font-medium text-gray-900 block mb-1 mt-8"
             >
               Email
@@ -278,7 +282,7 @@ const ContactSection = () => {
               errors={state.errors}
             />
             <label
-              for="email"
+              htmlFor="message"
               className="font-medium text-gray-900 block mb-1 mt-8"
             >
               Message
