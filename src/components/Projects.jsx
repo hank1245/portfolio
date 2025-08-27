@@ -20,7 +20,7 @@ export const projects = [
   },
   {
     title: "Algorithm Playground",
-    url: "https://algorithmplayground-dblxuzof2-hank1245s-projects.vercel.app/",
+    url: "https://algorithmplayground.vercel.app/",
     image: "projects/algorithm.png",
     description: "Algorithm 3D visualization with Three.js",
   },

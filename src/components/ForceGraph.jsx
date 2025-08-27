@@ -182,7 +182,7 @@ export default function ForceGraph() {
           {
             id: "algorithmplayground",
             name: "Algorithm Playground",
-            url: "https://algorithmplayground-dblxuzof2-hank1245s-projects.vercel.app/",
+            url: "https://algorithmplayground.vercel.app/",
             type: "project",
             group: 3,
           },
