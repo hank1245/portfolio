@@ -18,11 +18,7 @@ vi.mock("@react-three/drei", () => ({
 // Mock react-spring three
 vi.mock("@react-spring/three", () => ({
   a: {
-    group: ({ children, ...rest }) => (
-      <div data-testid="a-group" {...rest}>
-        {children}
-      </div>
-    ),
+    group: ({ children }) => <div data-testid="a-group">{children}</div>,
   },
   useSpring: () => ({ position: [0, 0, 0], rotation: [0, 0, 0] }),
 }));
@@ -47,10 +43,8 @@ describe("Projects", () => {
   test("renders all project titles and images", () => {
     render(<Projects />);
     projectData.forEach((p) => {
-      // Title text is uppercased in component
       expect(screen.getAllByText(p.title.toUpperCase())[0]).toBeInTheDocument();
     });
-    // Images rendered via mocked <img>
     const imgs = screen.getAllByTestId("project-image");
     expect(imgs.length).toBe(projectData.length);
   });

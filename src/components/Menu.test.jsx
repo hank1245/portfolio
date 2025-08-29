@@ -18,17 +18,19 @@ vi.mock("../hooks/useIntentPrefetch", () => ({
 import { Menu } from "./Menu";
 
 describe("Menu", () => {
-  test("toggles aria-label and triggers prefetch on open/hover", async () => {
+  test("triggers prefetch on hover", async () => {
     const user = userEvent.setup();
     const onSectionChange = vi.fn();
-    const Wrapper = () => (
+    render(
       <Menu
         onSectionChange={onSectionChange}
         menuOpened={false}
         setMenuOpened={() => {}}
       />
     );
-    render(<Wrapper />);
+
+    // Wait for lazy component to resolve to avoid Suspense act warning
+    await screen.findByTestId("force-graph");
 
     const toggle = screen.getByRole("button", { name: /open menu/i });
     expect(toggle).toBeInTheDocument();
@@ -40,17 +42,16 @@ describe("Menu", () => {
   test("navigates via section buttons", async () => {
     const user = userEvent.setup();
     const onSectionChange = vi.fn();
-    let opened = true;
-    const setMenuOpened = (v) => {
-      opened = v;
-    };
-    const { rerender } = render(
+    render(
       <Menu
         onSectionChange={onSectionChange}
-        menuOpened={opened}
-        setMenuOpened={setMenuOpened}
+        menuOpened={true}
+        setMenuOpened={() => {}}
       />
     );
+
+    // Ensure lazy content settled before interactions
+    await screen.findByTestId("force-graph");
 
     // Buttons should be visible when opened
     const projectsBtn = await screen.findByRole("button", {
