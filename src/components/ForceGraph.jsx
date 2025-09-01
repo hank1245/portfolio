@@ -7,24 +7,10 @@ export default function ForceGraph() {
     let cleanup = () => {};
     let mounted = true;
     (async () => {
-      const [
-        selection,
-        {
-          forceSimulation,
-          forceLink,
-          forceManyBody,
-          forceCenter,
-          forceCollide,
-        },
-        drag,
-      ] = await Promise.all([
-        import("d3-selection"),
-        import("d3-force"),
-        import("d3-drag"),
-      ]);
+      const d3 = await import("d3");
       if (!mounted || !svgRef.current) return;
 
-      const svg = selection.select(svgRef.current);
+      const svg = d3.select(svgRef.current);
       svg.selectAll("*").remove();
 
       const width = 500;
@@ -209,18 +195,20 @@ export default function ForceGraph() {
         ],
       };
 
-      const simulation = forceSimulation(forceGraphData.nodes)
+      const simulation = d3
+        .forceSimulation(forceGraphData.nodes)
         .force(
           "link",
-          forceLink(forceGraphData.links)
+          d3
+            .forceLink(forceGraphData.links)
             .id((d) => d.id)
             .distance(80)
         )
-        .force("charge", forceManyBody().strength(-300))
-        .force("center", forceCenter(width / 2, height / 2))
-        .force("collision", forceCollide().radius(25));
+        .force("charge", d3.forceManyBody().strength(-300))
+        .force("center", d3.forceCenter(width / 2, height / 2))
+        .force("collision", d3.forceCollide().radius(25));
 
-      const tooltip = selection
+      const tooltip = d3
         .select("body")
         .append("div")
         .style("position", "absolute")
@@ -318,7 +306,7 @@ export default function ForceGraph() {
           window.open(d.url, "_blank");
         })
         .call(
-          drag
+          d3
             .drag()
             .on("start", dragstarted)
             .on("drag", dragged)
