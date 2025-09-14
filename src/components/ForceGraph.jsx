@@ -19,7 +19,16 @@ export default function ForceGraph() {
       svg
         .attr("width", width)
         .attr("height", height)
-        .attr("viewBox", [0, 0, width, height]);
+        .attr("viewBox", [0, 0, width, height])
+        .attr("role", "img")
+        .attr("aria-labelledby", "force-graph-title force-graph-desc");
+
+      // Accessible name/description for screen readers
+      svg.append("title").attr("id", "force-graph-title").text("Interactive network graph of Hank's links");
+      svg
+        .append("desc")
+        .attr("id", "force-graph-desc")
+        .text("Use Tab to focus nodes and Enter or Space to open the selected link in a new tab.");
 
       const defs = svg.append("defs");
 
@@ -225,7 +234,9 @@ export default function ForceGraph() {
         .style("pointer-events", "none")
         .style("z-index", "1000")
         .style("box-shadow", "0 4px 12px rgba(0, 0, 0, 0.3)")
-        .style("backdrop-filter", "blur(4px)");
+        .style("backdrop-filter", "blur(4px)")
+        .attr("role", "tooltip")
+        .attr("aria-hidden", "true");
 
       const linkGradient = defs
         .append("linearGradient")
@@ -330,6 +341,30 @@ export default function ForceGraph() {
         .style("pointer-events", "none")
         .style("text-shadow", "0 1px 2px rgba(255, 255, 255, 0.8)");
 
+      // Accessibility: make circles keyboard-focusable and operable
+      node
+        .attr("role", "link")
+        .attr("tabindex", 0)
+        .attr("aria-label", (d) => `${d.name} (${d.type}) — opens in a new tab`)
+        .on("keydown.a11y", function (event, d) {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            window.open(d.url, "_blank");
+          }
+        })
+        .on("focus", function () {
+          d3.select(this).attr("stroke", "#111827").attr("stroke-width", 4);
+        })
+        .on("blur", function () {
+          d3.select(this).attr("stroke", "#ffffff").attr("stroke-width", 3);
+        })
+        .on("mouseover.a11y", function () {
+          tooltip.attr("aria-hidden", "false");
+        })
+        .on("mouseout.a11y", function () {
+          tooltip.attr("aria-hidden", "true");
+        });
+
       simulation.on("tick", () => {
         link
           .attr("x1", (d) => d.source.x)
@@ -370,11 +405,16 @@ export default function ForceGraph() {
   }, []);
 
   return (
-    <div
+    <section
       className="w-full bg-gradient-to-br from-white via-gray-50 to-indigo-50 rounded-xl shadow-lg border border-gray-200/50 overflow-hidden relative"
-      aria-label="Interactive network graph of links"
+      aria-labelledby="force-graph-heading"
+      role="region"
     >
-      <svg ref={svgRef} className="w-full"></svg>
-    </div>
+      <h2 id="force-graph-heading" className="sr-only">Interactive Network Graph</h2>
+      <p id="force-graph-instructions" className="sr-only">
+        Tab to focus nodes. Press Enter or Space to open the selected link in a new tab.
+      </p>
+      <svg ref={svgRef} className="w-full" aria-describedby="force-graph-instructions"></svg>
+    </section>
   );
 }
