@@ -15,8 +15,10 @@ export const Menu = (props) => {
     <>
       <button
         onClick={handleToggle}
-        className="z-20 fixed top-4 right-4 md:top-12 md:right-12 p-3 bg-indigo-600 w-11 h-11 rounded-md"
+        className="z-20 fixed top-4 right-4 md:top-12 md:right-12 p-3 bg-indigo-600 w-11 h-11 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500"
         aria-label={menuOpened ? "Close menu" : "Open menu"}
+        aria-expanded={menuOpened}
+        aria-controls="site-menu"
         title={menuOpened ? "Close menu" : "Open menu"}
         onMouseEnter={prefetchOnHover}
       >
@@ -36,16 +38,20 @@ export const Menu = (props) => {
           }`}
         />
       </button>
-      <div
+      <nav
+        id="site-menu"
+        role="navigation"
+        aria-label="Site"
+        aria-hidden={!menuOpened}
         className={`z-10 fixed top-0 right-0 bottom-0 bg-gradient-to-br from-white via-gray-50 to-indigo-50 transition-all overflow-y-auto flex flex-col
       ${menuOpened ? "w-full md:w-[460px]" : "w-0"}`}
       >
         <div className="flex-1 flex flex-col p-6 mt-24 space-y-12">
           <div className="flex flex-col gap-8">
-            <MenuButton label="About" onClick={() => onSectionChange(0)} />
-            <MenuButton label="Skills" onClick={() => onSectionChange(1)} />
-            <MenuButton label="Projects" onClick={() => onSectionChange(2)} />
-            <MenuButton label="Contact" onClick={() => onSectionChange(3)} />
+            <MenuButton label="About" onClick={() => onSectionChange(0)} tabIndex={menuOpened ? 0 : -1} />
+            <MenuButton label="Skills" onClick={() => onSectionChange(1)} tabIndex={menuOpened ? 0 : -1} />
+            <MenuButton label="Projects" onClick={() => onSectionChange(2)} tabIndex={menuOpened ? 0 : -1} />
+            <MenuButton label="Contact" onClick={() => onSectionChange(3)} tabIndex={menuOpened ? 0 : -1} />
           </div>
 
           <div className="flex-1 min-h-[500px]">
@@ -59,16 +65,18 @@ export const Menu = (props) => {
             </div>
           </div>
         </div>
-      </div>
+      </nav>
     </>
   );
 };
 const MenuButton = memo((props) => {
-  const { label, onClick } = props;
+  const { label, onClick, tabIndex } = props;
   return (
     <button
       onClick={onClick}
-      className="text-3xl font-bold cursor-pointer hover:text-indigo-600 transition-colors"
+      type="button"
+      tabIndex={tabIndex}
+      className="text-3xl font-bold cursor-pointer hover:text-indigo-600 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 rounded"
       aria-label={`Go to ${label} section`}
     >
       {label}

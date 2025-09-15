@@ -34,12 +34,12 @@ const Section = (props) => {
 export const Interface = (props) => {
   const { setSection } = props;
   return (
-    <div className="flex flex-col items-center w-screen">
+    <main id="main-content" role="main" className="flex flex-col items-center w-screen">
       <AboutSection setSection={setSection} />
       <SkillsSection />
       <ProjectsSection />
       <ContactSection />
-    </div>
+    </main>
   );
 };
 
@@ -75,8 +75,9 @@ const AboutSection = (props) => {
       </motion.p>
       <motion.button
         onClick={() => window.open("https://kimhank.oopy.io/", "_blank")}
+        type="button"
         className={`bg-indigo-600 text-white py-4 px-8 
-      rounded-lg font-bold text-lg mt-4 md:mt-16`}
+      rounded-lg font-bold text-lg mt-4 md:mt-16 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500`}
         aria-label="Open Hank's Notion page in a new tab"
         initial={{
           opacity: 0,
@@ -224,19 +225,26 @@ const ProjectsSection = () => {
     <Section>
       <div className="flex w-full h-full gap-8 items-center justify-center">
         <button
-          className="hover:text-indigo-600 transition-colors"
+          type="button"
+          className="hover:text-indigo-600 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 rounded"
           onClick={previousProject}
+          aria-label="View previous project"
         >
           ← Previous
         </button>
         <h2 className="text-3xl md:text-5xl font-bold">Projects</h2>
         <button
-          className="hover:text-indigo-600 transition-colors"
+          type="button"
+          className="hover:text-indigo-600 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 rounded"
           onClick={nextProject}
+          aria-label="View next project"
         >
           Next →
         </button>
       </div>
+      <p className="sr-only" aria-live="polite">
+        Current project: {projects[currentProject].title}
+      </p>
     </Section>
   );
 };
@@ -298,7 +306,8 @@ const ContactSection = () => {
             />
             <button
               disabled={state.submitting}
-              className="bg-indigo-600 text-white py-4 px-8 rounded-lg font-bold text-lg mt-16 "
+              type="submit"
+              className="bg-indigo-600 text-white py-4 px-8 rounded-lg font-bold text-lg mt-16 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500"
             >
               Submit
             </button>
