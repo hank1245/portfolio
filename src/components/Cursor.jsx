@@ -62,6 +62,8 @@ export const Cursor = () => {
   return (
     <>
       <div
+        aria-hidden="true"
+        role="presentation"
         className={`invisible md:visible  z-50 fixed -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none transition-transform
         ${
           hoverButton

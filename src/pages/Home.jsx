@@ -40,6 +40,8 @@ export default function Home() {
           shadows
           camera={{ position: [0, 3, 10], fov: 42 }}
           onMouseEnter={prefetchOnHover}
+          aria-hidden="true"
+          role="presentation"
         >
           <color attach="background" args={["#e6e7ff"]} />
           <ErrorBoundary onRetry={handleRetry}>

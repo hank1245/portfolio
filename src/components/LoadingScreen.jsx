@@ -15,6 +15,9 @@ export const LoadingScreen = (props) => {
 
   return (
     <div
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
       className={`fixed top-0 left-0 w-full h-full z-50 transition-opacity duration-1000 pointer-events-none
   flex items-center justify-center bg-indigo-50 
   ${started ? "opacity-0" : "opacity-100"}`}
@@ -29,6 +32,7 @@ export const LoadingScreen = (props) => {
           Hank Kim
         </div>
         <div className="opacity-40">Hank Kim</div>
+        <p className="sr-only">Loading assets: {Math.round(progress)}% complete</p>
       </div>
     </div>
   );
