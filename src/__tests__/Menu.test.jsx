@@ -4,7 +4,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 // Mock the lazy ForceGraph to avoid d3 and SVG complexity in tests
-vi.mock("./ForceGraph", () => ({
+vi.mock("../components/ForceGraph", () => ({
   default: () => <div data-testid="force-graph" />,
 }));
 
@@ -15,7 +15,7 @@ vi.mock("../hooks/useIntentPrefetch", () => ({
   default: () => ({ prefetchOnHover, prefetchOnOpen }),
 }));
 
-import { Menu } from "./Menu";
+import { Menu } from "../components/Menu";
 
 describe("Menu", () => {
   test("triggers prefetch on hover", async () => {

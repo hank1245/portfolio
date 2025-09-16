@@ -37,7 +37,7 @@ vi.mock("../stores/projectStore", async () => {
   return { default: store };
 });
 
-import { Projects, projects as projectData } from "./Projects";
+import { Projects, projects as projectData } from "../components/Projects";
 
 describe("Projects", () => {
   test("renders all project titles and images", () => {
