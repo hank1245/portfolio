@@ -1,5 +1,5 @@
 import { renderHook, act } from "@testing-library/react";
-import useIntentPrefetch from "./useIntentPrefetch";
+import useIntentPrefetch from "../hooks/useIntentPrefetch";
 
 describe("useIntentPrefetch", () => {
   test("triggers prefetch only once across hover/open/scroll", () => {

@@ -9,32 +9,39 @@ export const projects = [
   {
     title: "DirectoryTracer",
     url: "https://directorytracer.xyz",
-    image: "projects/directory.png",
+    image: "projects/directory.avif",
     description: "A directory listing vulnerability scanner",
   },
   {
     title: "Bedtime Storyteller",
     url: "https://bedtimestoryteller.rest",
-    image: "projects/bedtime.png",
+    image: "projects/bedtime.avif",
     description: "Create bedtime stories with AI for your kids",
   },
   {
     title: "Algorithm Playground",
     url: "https://algorithmplayground.vercel.app/",
-    image: "projects/algorithm.png",
+    image: "projects/algorithm.avif",
     description: "Algorithm 3D visualization with Three.js",
   },
   {
     title: "Vocasimple",
     url: "https://endearing-pie-91e6b8.netlify.app/",
-    image: "projects/vocasimple.png",
+    image: "projects/vocasimple.avif",
     description:
       "Learn English vocabulary through quizzes and interactive features",
   },
   {
+    title: "Storybook",
+    url: "https://hankstorybook.netlify.app/",
+    image: "projects/storybook.avif",
+    description:
+      "Showcasing Reusable animation effects, packaged as React components in Storybook, ready to reuse.",
+  },
+  {
     title: "Dev Blog",
     url: "https://hank1245.github.io",
-    image: "projects/blog.png",
+    image: "projects/blog.avif",
     description: "My personal blog to share tech articles.",
   },
 ];

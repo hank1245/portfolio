@@ -1,4 +1,4 @@
-import useProjectStore from "./projectStore";
+import useProjectStore from "../stores/projectStore";
 
 describe("useProjectStore", () => {
   test("has default currentProject and updates via setter", () => {
