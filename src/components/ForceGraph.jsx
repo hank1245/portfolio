@@ -188,6 +188,13 @@ export default function ForceGraph() {
             type: "project",
             group: 3,
           },
+          {
+            id: "storybook",
+            name: "Storybook",
+            url: "https://hankstorybook.netlify.app/",
+            type: "project",
+            group: 3,
+          },
         ],
         links: [
           { source: "notionpage", target: "portfolio", value: 1 },
@@ -201,6 +208,7 @@ export default function ForceGraph() {
           { source: "portfolio", target: "bedtimestoryteller", value: 1 },
           { source: "portfolio", target: "algorithmplayground", value: 1 },
           { source: "portfolio", target: "vocasimple", value: 1 },
+          { source: "portfolio", target: "storybook", value: 1 },
         ],
       };
 

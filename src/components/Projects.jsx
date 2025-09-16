@@ -36,7 +36,7 @@ export const projects = [
     url: "https://hankstorybook.netlify.app/",
     image: "projects/storybook.avif",
     description:
-      "Learn English vocabulary through quizzes and interactive features",
+      "Showcasing Reusable animation effects, packaged as React components in Storybook, ready to reuse.",
   },
   {
     title: "Dev Blog",
