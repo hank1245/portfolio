@@ -61,13 +61,6 @@ src/
 - **Animated Avatar**: Character animations using FBX models
 - **Responsive Design**: Works across all devices
 
-## Deployment
-
-Deployed on Vercel with automatic builds from main branch.
-
-```bash
-npm run deploy
-```
 
 ## Contact
 
